@@ -31,6 +31,13 @@ module FE_STAGE(
   
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents; 
   
+  // From AGEX
+  wire one;
+  wire two;
+  wire three;
+  wire from_AGEX_is_br;
+  wire pctarget_AGEX;
+  
   // reading instruction from imem 
   assign inst_FE = imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]]; 
   
@@ -51,14 +58,25 @@ module FE_STAGE(
                                 // if you add more bits here, please increase the width of latch in VX_define.vh 
                                 `BUS_CANARY_VALUE // for an error checking of bus encoding/decoding  
                                 };
+   assign  {
+                              one,
+                              two,
+                              three,
+                              from_AGEX_is_br,
+                              pctarget_AGEX
+                              } = from_AGEX_to_FE; 
    
-  assign stall_pipe = 1; // you need to complete the logic to compute stall FE stage 
+  assign stall_pipe = (inst_FE[31:28] == 4'b0010 & !from_AGEX_is_br); // you need to complete the logic to compute stall FE stage 
    
   always @ (posedge clk or posedge reset) begin
     if(reset)
       PC_FE_latch <= `STARTPC;
-    else if(!stall_pipe)
-      PC_FE_latch <= pcplus_FE;
+    else if(!stall_pipe) begin
+            if(pctarget_AGEX == 0)
+                PC_FE_latch <= pcplus_FE;
+            else
+                PC_FE_latch <= pctarget_AGEX;         
+         end
     else
       PC_FE_latch <= PC_FE_latch;
   end

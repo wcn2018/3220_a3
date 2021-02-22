@@ -50,6 +50,21 @@ module DE_STAGE(
   assign op1_DE = inst_DE[31:26];  // example code 
 
  // complete the rest of instruction decoding 
+  assign op2_DE = inst_DE[25:18];
+  assign imm_DE = inst_DE[23:8];
+  assign rd_DE = inst_DE[11:8];
+  assign rs_DE = inst_DE[7:4];
+  assign rt_DE = inst_DE[3:0];
+  
+  assign regval1_DE = regs[rs_DE];
+  assign regval2_DE = regs[rt_DE];
+  
+  assign is_br_DE = (inst_DE[31:28] == 4'b0010);
+  assign is_jmp_DE = (inst_DE[31:28] == 4'b0011);
+  assign rd_mem_DE = (op1_DE == 6'b010010);
+  assign wr_reg_DE = (op1_DE == 6'b010010);
+  assign wr_mem_DE = (op1_DE == 6'b011010);
+  assign wregno_DE = rd_DE;
 
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 

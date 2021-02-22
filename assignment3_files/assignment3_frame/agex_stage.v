@@ -43,6 +43,7 @@ module AGEX_STAGE(
   
   wire[`DBITS-1:0] pctarget_AGEX; 
   
+  
     wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
  // **TODO: Complete the rest of the pipeline 
  
@@ -64,6 +65,18 @@ module AGEX_STAGE(
 			`OP2_LT	 : aluout_AGEX = {31'b0, regval1_AGEX < regval2_AGEX};
 		   // **TODO:  complete the other OP2_*s
 		   // ...
+		    `OP2_LE  : aluout_AGEX = {31'b0, regval1_AGEX <= regval2_AGEX};
+		    `OP2_NE  : aluout_AGEX = {31'b0, regval1_AGEX != regval2_AGEX};
+		    `OP2_ADD  : aluout_AGEX = {31'b0, regval1_AGEX + regval2_AGEX};
+		    `OP2_AND  : aluout_AGEX = {31'b0, regval1_AGEX & regval2_AGEX};
+		    `OP2_OR  : aluout_AGEX = {31'b0, regval1_AGEX | regval2_AGEX};
+		    `OP2_XOR  : aluout_AGEX = {31'b0, regval1_AGEX ^ regval2_AGEX};
+		    `OP2_SUB  : aluout_AGEX = {31'b0, regval1_AGEX - regval2_AGEX};
+		    `OP2_NAND  : aluout_AGEX = {31'b0, !(regval1_AGEX | regval2_AGEX)};
+		    `OP2_NOR  : aluout_AGEX = {31'b0, !(regval1_AGEX & regval2_AGEX)};
+		    `OP2_NXOR  : aluout_AGEX = {31'b0, !(regval1_AGEX ^ regval2_AGEX)};
+		    `OP2_RSHF  : aluout_AGEX = {31'b0, regval1_AGEX >> regval2_AGEX};
+		    `OP2_LSHF  : aluout_AGEX = {31'b0, regval1_AGEX << regval2_AGEX};
 			default	 : aluout_AGEX = {`DBITS{1'b0}};
 		endcase
 	 else if(op1_AGEX == `OP1_LW || op1_AGEX == `OP1_SW || op1_AGEX == `OP1_ADDI)
@@ -75,12 +88,15 @@ module AGEX_STAGE(
 	 else if(op1_AGEX == `OP1_XORI)
 		aluout_AGEX = regval1_AGEX ^ sxt_imm_AGEX;
     // add OP1_JAL case 
+     else if(op1_AGEX == `OP1_JAL)
+        aluout_AGEX = PC_AGEX + 4;
 	 else
 		aluout_AGEX = {`DBITS{1'b0}};
 	 end
 
 // branch target needs to be computed here 
 // computed branch target needs to send to other pipeline stages
+    assign pctarget_AGEX = br_cond_AGEX ? (PC_AGEX + 4 + 4 * sxt_imm_AGEX): {`DBITS{1'b0}};
 
     assign  {
                                   inst_AGEX,
@@ -114,6 +130,14 @@ module AGEX_STAGE(
                                 wregno_AGEX,
                                        // more signals might need
                                 bus_canary_AGEX     
+                                 }; 
+                                 
+  assign from_AGEX_to_FE = {
+                                1'b0,
+                                1'b0,
+                                1'b0,
+                                is_br_AGEX,
+                                pctarget_AGEX   
                                  }; 
  
   always @ (posedge clk or posedge reset) begin
