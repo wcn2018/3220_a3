@@ -82,7 +82,7 @@
   `define MEM_latch_WIDTH   (`INSTBITS+`DBITS+`DBITS +`DBITS + `DBITS + 1 + 1 + `REGNOBITS + `BUS_CANARY_WIDTH)
 
   `define from_DE_to_FE_WIDTH  1 
-  `define from_AGEX_to_FE_WIDTH (4 + `DBITS )
+  `define from_AGEX_to_FE_WIDTH (4 + `DBITS + `DBITS )
   `define from_MEM_to_FE_WIDTH 4
   `define from_WB_to_FE_WIDTH 4
 

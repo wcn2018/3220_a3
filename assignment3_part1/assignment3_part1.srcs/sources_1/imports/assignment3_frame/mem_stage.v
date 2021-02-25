@@ -59,7 +59,7 @@ module MEM_STAGE(
  
 
    // **TODO: Complete the rest of the pipeline 
-
+   
     
    assign MEM_latch_out = MEM_latch; 
 

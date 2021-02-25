@@ -41,7 +41,8 @@ module AGEX_STAGE(
   reg br_cond_AGEX;
   reg [`DBITS-1:0] aluout_AGEX; 
   
-  wire[`DBITS-1:0] pctarget_AGEX; 
+  wire[`DBITS-1:0] pctarget_AGEX;
+  wire[`DBITS-1:0] pctarget_AGEX_JMP; 
   
   
     wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
@@ -89,7 +90,7 @@ module AGEX_STAGE(
 		aluout_AGEX = regval1_AGEX ^ sxt_imm_AGEX;
     // add OP1_JAL case 
      else if(op1_AGEX == `OP1_JAL)
-        aluout_AGEX = PC_AGEX + 4;
+        aluout_AGEX = PC_AGEX + 4; //write is handled in the write block later.
 	 else
 		aluout_AGEX = {`DBITS{1'b0}};
 	 end
@@ -97,6 +98,9 @@ module AGEX_STAGE(
 // branch target needs to be computed here 
 // computed branch target needs to send to other pipeline stages
     assign pctarget_AGEX = br_cond_AGEX ? (PC_AGEX + 4 + 4 * sxt_imm_AGEX): {`DBITS{1'b0}};
+    assign pctarget_AGEX_JMP = regval1_AGEX + 4 * sxt_imm_AGEX;
+    
+    
 
     assign  {
                                   inst_AGEX,
@@ -135,9 +139,10 @@ module AGEX_STAGE(
   assign from_AGEX_to_FE = {
                                 1'b0,
                                 1'b0,
-                                1'b0,
+                                is_jmp_AGEX,
                                 is_br_AGEX,
-                                pctarget_AGEX   
+                                pctarget_AGEX,
+                                pctarget_AGEX_JMP   
                                  }; 
  
   always @ (posedge clk or posedge reset) begin

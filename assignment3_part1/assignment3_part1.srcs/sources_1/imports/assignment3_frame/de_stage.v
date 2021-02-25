@@ -9,18 +9,21 @@ module DE_STAGE(
   input [`from_MEM_to_DE_WIDTH-1:0] from_MEM_to_DE,     
   input [`from_WB_to_DE_WIDTH-1:0] from_WB_to_DE,  
   output [`from_DE_to_FE_WIDTH-1:0] from_DE_to_FE,   
-  output[`DE_latch_WIDTH-1:0] DE_latch_out
+  output[`DE_latch_WIDTH-1:0] DE_latch_out,
+  output [15:0] from_DE_to_MEM //equal to num registers
 );
 
 /* pipeline latch*/ 
- reg [`DE_latch_WIDTH-1:0] DE_latch; 
+ reg [`DE_latch_WIDTH-1:0] DE_latch;
 
   /* register file */ 
   reg [`DBITS-1:0] regs [`REGWORDS-1:0];
-  
+  /* busy bit table */
+  reg [15:0] bb_table;  
  /* decode signals */
   
   wire [`INSTBITS-1:0] inst_DE; 
+  wire [`INSTBITS-1:0] inst_logic;
   wire [`DBITS-1:0] PC_DE;
   wire [`DBITS-1:0] pcplus_DE; 
   wire [`OP1BITS-1:0] op1_DE;
@@ -37,16 +40,19 @@ module DE_STAGE(
 
   wire is_br_DE;
   wire is_jmp_DE;
+  wire writes_rt;
   wire rd_mem_DE;
   wire wr_mem_DE;
   wire wr_reg_DE;
   wire [`REGNOBITS-1:0] wregno_DE;
+  reg [`DBITS-1:0] prev_inst;
   
   wire[`DE_latch_WIDTH-1:0] DE_latch_contents; 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_DE; 
  // **TODO: Complete the rest of the pipeline 
 
 // extracting a part of opcode 
+  
   assign op1_DE = inst_DE[31:26];  // example code 
 
  // complete the rest of instruction decoding 
@@ -58,13 +64,14 @@ module DE_STAGE(
   
   assign regval1_DE = regs[rs_DE];
   assign regval2_DE = regs[rt_DE];
+  assign writes_rt = ((op1_DE == 6'b010010) | (inst_DE[31] == 1'b1));
   
   assign is_br_DE = (inst_DE[31:28] == 4'b0010);
   assign is_jmp_DE = (inst_DE[31:28] == 4'b0011);
   assign rd_mem_DE = (op1_DE == 6'b010010);
-  assign wr_reg_DE = (op1_DE == 6'b010010);
+  assign wr_reg_DE = (writes_rt | (op1_DE == 6'b000000));
   assign wr_mem_DE = (op1_DE == 6'b011010);
-  assign wregno_DE = rd_DE;
+  assign wregno_DE = (writes_rt) ? rt_DE : rd_DE;
 
 // assign wire to send the contents of DE latch to other pipeline stages  
   assign DE_latch_out = DE_latch; 
@@ -76,13 +83,17 @@ module DE_STAGE(
 
 // decoding the contents of FE latch out. the order should be matched with the fe_stage.v 
   assign {
-            inst_DE,
+            inst_logic,
             PC_DE, 
             pcplus_DE,
             bus_canary_DE 
             }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
 
-
+  assign inst_DE = (prev_inst[31:29] == 3'b001) ? 0 : inst_logic;
+  
+    assign from_DE_to_MEM = {
+        bb_table
+    };
 
     assign DE_latch_contents = {
                                   inst_DE,
@@ -132,9 +143,13 @@ module DE_STAGE(
       DE_latch <= {`DE_latch_WIDTH{1'b0}};
       // might need more code 
       end
-     else 
+     else begin
      // need to complete. e.g.) stall? 
       DE_latch <= DE_latch_contents;
+      prev_inst <= inst_logic;
+      if (wr_mem_DE)
+        bb_table[wregno_DE] = 1;
+     end
   end
 
 endmodule

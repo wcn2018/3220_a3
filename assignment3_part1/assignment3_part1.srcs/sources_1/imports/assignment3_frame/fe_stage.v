@@ -34,8 +34,9 @@ module FE_STAGE(
   // From AGEX
   wire one;
   wire two;
-  wire three;
+  wire from_AGEX_is_jmp;
   wire from_AGEX_is_br;
+  wire pctarget_AGEX_jmp;
   wire pctarget_AGEX;
   
   // reading instruction from imem 
@@ -61,21 +62,24 @@ module FE_STAGE(
    assign  {
                               one,
                               two,
-                              three,
+                              from_AGEX_is_jmp,
                               from_AGEX_is_br,
-                              pctarget_AGEX
+                              pctarget_AGEX,
+                              pctarget_AGEX_jmp
                               } = from_AGEX_to_FE; 
    
-  assign stall_pipe = (inst_FE[31:28] == 4'b0010 & !from_AGEX_is_br); // you need to complete the logic to compute stall FE stage 
+  assign stall_pipe = (inst_FE[31:28] == ((4'b0010 & !from_AGEX_is_br) || from_AGEX_is_jmp)); // you need to complete the logic to compute stall FE stage 
    
   always @ (posedge clk or posedge reset) begin
     if(reset)
       PC_FE_latch <= `STARTPC;
     else if(!stall_pipe) begin
-            if(pctarget_AGEX == 0)
-                PC_FE_latch <= pcplus_FE;
+            if(from_AGEX_is_br)
+                PC_FE_latch <= pctarget_AGEX;
+            else if (from_AGEX_is_jmp)
+                PC_FE_latch <= pctarget_AGEX_jmp;
             else
-                PC_FE_latch <= pctarget_AGEX;         
+                PC_FE_latch <= pcplus_FE;         
          end
     else
       PC_FE_latch <= PC_FE_latch;
