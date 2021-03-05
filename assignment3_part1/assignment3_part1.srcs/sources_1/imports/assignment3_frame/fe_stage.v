@@ -30,6 +30,7 @@ module FE_STAGE(
   wire stall_pipe; // signal to indicate when a front-end needs to be stall
   
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents; 
+  wire [`INSTBITS-1:0] inst_predict;
   
   // From AGEX
   wire one;
@@ -40,12 +41,11 @@ module FE_STAGE(
   wire pctarget_AGEX;
   
   // reading instruction from imem 
-  assign inst_FE = imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]]; 
+  assign inst_FE = imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]];
+  assign inst_predict = imem[pcplus_FE[`IMEMADDRBITS-1:`IMEMWORDBITS]]; //use for coming out of stall, if not BR to target
   
   // wire to send the FE latch contents to the DE stage 
-  assign FE_latch_out = FE_latch; 
-
- 
+  assign FE_latch_out = FE_latch;
 
   // This is the value of "incremented PC", computed in the FE stage
   assign pcplus_FE = PC_FE_latch + `INSTSIZE;
@@ -53,9 +53,10 @@ module FE_STAGE(
    
    // the order of latch contents should be matched in the decode stage when we extract the contents. 
   assign FE_latch_contents = { 
-                                inst_FE, 
+                                (from_AGEX_is_br) ? inst_predict : inst_FE, 
                                 PC_FE_latch, 
-                                pcplus_FE, // please feel free to add more signals such as valid bits etc. 
+                                pcplus_FE,
+                                 // please feel free to add more signals such as valid bits etc. 
                                 // if you add more bits here, please increase the width of latch in VX_define.vh 
                                 `BUS_CANARY_VALUE // for an error checking of bus encoding/decoding  
                                 };
@@ -68,7 +69,8 @@ module FE_STAGE(
                               pctarget_AGEX_jmp
                               } = from_AGEX_to_FE; 
    
-  assign stall_pipe = (inst_FE[31:28] == ((4'b0010 & !from_AGEX_is_br) || from_AGEX_is_jmp)); // you need to complete the logic to compute stall FE stage 
+  assign stall_pipe = (((inst_FE[31:28] == 4'b0010) || (inst_FE[31:28] == 4'b0011) && !(from_AGEX_is_br || from_AGEX_is_jmp)));
+//                           || (from_DE_bb_table[inst_FE[/*readreg1*/]] == 1|| from_DE_bb_table[inst_FE[]] == 1)); // you need to complete the logic to compute stall FE stage 
    
   always @ (posedge clk or posedge reset) begin
     if(reset)

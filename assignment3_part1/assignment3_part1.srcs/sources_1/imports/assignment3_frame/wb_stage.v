@@ -29,7 +29,10 @@ module WB_STAGE(
 
   reg [23:0] HEX_out; 
   reg [9:0] LEDR_out; 
-
+  
+  wire rd_mem_WB;
+  wire [`DBITS-1:0] rd_val_WB;
+  wire [`DBITS-1:0] aluout_WB;
 /* HEX0, HEX1 are completed for you.  */ 
  always @ (posedge clk or posedge reset) begin
     if(reset)
@@ -52,13 +55,22 @@ module WB_STAGE(
                                 regval2_WB,
                                 wr_mem_WB,
                                 wr_reg_WB,
-                                wregno_WB,    
+                                wregno_WB,
+                                rd_mem_WB,
+                                rd_val_WB,//add DBITS to def
+                                aluout_WB,//add DBITS to def
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
         
         // write register by sending data to the DE stage 
-        
+   assign from_WB_to_DE = {
+                                wr_reg_WB, //1 bit
+                                rd_mem_WB, //1 bit
+                                wregno_WB, //REGNOBITS
+                                rd_val_WB, //DBITS memory read value
+                                aluout_WB  //DBITS
+   };
         
   // **TODO: Write the code for LEDR here
 

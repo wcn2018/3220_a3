@@ -144,6 +144,10 @@ module AGEX_STAGE(
                                 pctarget_AGEX,
                                 pctarget_AGEX_JMP   
                                  }; 
+                                 
+  assign from_AGEX_to_DE = {
+    (is_jmp_AGEX || is_br_AGEX)
+  };
  
   always @ (posedge clk or posedge reset) begin
     if(reset) begin

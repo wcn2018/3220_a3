@@ -86,7 +86,10 @@ module MEM_STAGE(
                                 regval2_MEM, 
                                 wr_mem_MEM,
                                 wr_reg_MEM,
-                                wregno_MEM,    
+                                wregno_MEM,
+                                rd_mem_MEM, //add 1 to def
+                                rd_val_MEM, //add DBITS to def
+                                aluout_MEM, //add DBITS to def   
                                         // more signals might need    
                               bus_canary_MEM                   
    };
