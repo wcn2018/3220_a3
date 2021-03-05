@@ -97,7 +97,8 @@ module AGEX_STAGE(
 
 // branch target needs to be computed here 
 // computed branch target needs to send to other pipeline stages
-    assign pctarget_AGEX = br_cond_AGEX ? (PC_AGEX + 4 + 4 * sxt_imm_AGEX): {`DBITS{1'b0}};
+    // assign pctarget_AGEX = br_cond_AGEX ? (PC_AGEX + 4 + 4 * sxt_imm_AGEX): {`DBITS{1'b0}};
+    assign pctarget_AGEX = PC_AGEX + 4 + 4 * sxt_imm_AGEX;
     assign pctarget_AGEX_JMP = regval1_AGEX + 4 * sxt_imm_AGEX;
     
     
@@ -137,20 +138,20 @@ module AGEX_STAGE(
                                  }; 
                                  
   assign from_AGEX_to_FE = {
-                                1'b0,
-                                1'b0,
-                                is_jmp_AGEX,
-                                is_br_AGEX,
-                                pctarget_AGEX,
-                                pctarget_AGEX_JMP   
+                                is_br_AGEX, // 1
+                                is_jmp_AGEX, // 1     
+                                br_cond_AGEX, //1
+                                pctarget_AGEX, // DBITS
+                                pctarget_AGEX_JMP // DBITS
                                  }; 
-                                 
+                                      
   assign from_AGEX_to_DE = {
-    is_jmp_AGEX, //1
-    pctarget_AGEX_JMP, //Figure out num bits
-    is_br_AGEX, //1
-    br_cond_AGEX //1
-  };
+                                is_br_AGEX, //1
+                                is_jmp_AGEX, //1
+                                br_cond_AGEX, //1
+                                pctarget_AGEX, // DBITS
+                                pctarget_AGEX_JMP //DBITS
+                                 };
  
   always @ (posedge clk or posedge reset) begin
     if(reset) begin

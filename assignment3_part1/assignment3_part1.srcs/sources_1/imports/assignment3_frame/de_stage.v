@@ -9,8 +9,8 @@ module DE_STAGE(
   input [`from_MEM_to_DE_WIDTH-1:0] from_MEM_to_DE,     
   input [`from_WB_to_DE_WIDTH-1:0] from_WB_to_DE,  
   output [`from_DE_to_FE_WIDTH-1:0] from_DE_to_FE,   
-  output[`DE_latch_WIDTH-1:0] DE_latch_out,
-  output [15:0] from_DE_to_MEM //equal to num registers
+  output[`DE_latch_WIDTH-1:0] DE_latch_out
+  //output [15:0] from_DE_to_MEM //equal to num registers
 );
 
 /* pipeline latch*/ 
@@ -19,7 +19,7 @@ module DE_STAGE(
   /* register file */ 
   reg [`DBITS-1:0] regs [`REGWORDS-1:0];
   /* busy bit table */
-  reg [15:0] bb_table;  
+  reg [`DBITS-1:0] bb_table;  
  /* decode signals */
   
   wire [`INSTBITS-1:0] inst_DE; 
@@ -46,8 +46,10 @@ module DE_STAGE(
   wire wr_mem_DE;
   wire wr_reg_DE;
   wire [`REGNOBITS-1:0] wregno_DE;
+  
+  // experimental added signals
   reg [`DBITS-1:0] prev_inst;
-  reg should_bubble = 0;//do registers start as 0?
+  reg should_bubble;
   
   wire[`DE_latch_WIDTH-1:0] DE_latch_contents; 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_DE; 
@@ -61,10 +63,11 @@ module DE_STAGE(
   wire [`DBITS-1:0] from_WB_aluval;
   
   //from AGEX:
-  wire from_AGEX_is_jmp;
   wire from_AGEX_is_br;
-  wire from_AGEX_brcond;
-  wire [`DBITS-1:0] from_AGEX_jmptarget;
+  wire from_AGEX_is_jmp;
+  wire from_AGEX_br_cond;
+  wire [`DBITS-1:0] from_AGEX_br_target;
+  wire [`DBITS-1:0] from_AGEX_jmp_target;
 // extracting a part of opcode 
   
   assign op1_DE = inst_DE[31:26];  // example code 
@@ -82,9 +85,9 @@ module DE_STAGE(
   
   assign is_br_DE = (inst_DE[31:28] == 4'b0010);
   assign is_jmp_DE = (inst_DE[31:28] == 4'b0011);
-  assign rd_mem_DE = (op1_DE == 6'b010010);
+  assign rd_mem_DE = (op1_DE == 6'b010010); // only load instruction
   assign wr_reg_DE = (writes_rt || (op1_DE == 6'b000000));
-  assign wr_mem_DE = (op1_DE == 6'b011010);
+  assign wr_mem_DE = (op1_DE == 6'b011010); // only store instruction
   assign wregno_DE = (writes_rt) ? rt_DE : rd_DE;
   
  
@@ -98,11 +101,12 @@ module DE_STAGE(
 
 // decoding the contents of FE latch out. the order should be matched with the fe_stage.v 
   assign {
-            inst_logic,
+            inst_logic, // inst_logic is instruction from fetch, inst_DE is instruction in decode
             PC_DE, 
             pcplus_DE,
             bus_canary_DE 
             }  = from_FE_latch;  // based on the contents of the latch, you can decode the content 
+            
    //from WB signals:
   assign {
     from_WB_write, //1 bit
@@ -113,17 +117,21 @@ module DE_STAGE(
   } = from_WB_to_DE;
 
   assign {
-    from_AGEX_is_jmp,
-    from_AGEX_jmptarget,
     from_AGEX_is_br,
-    from_AGEX_brcond
+    from_AGEX_is_jmp,
+    from_AGEX_br_cond,
+    from_AGEX_br_target,
+    from_AGEX_jmp_target
   } = from_AGEX_to_DE;
+  
 
-  assign clear_bubble_reg = (from_AGEX_is_jmp || from_AGEX_is_br);
-  assign inst_DE = (should_bubble) ? 0 : inst_logic;
-    assign from_DE_to_MEM = {
-        bb_table
-    };
+
+  //assign clear_bubble_reg = (from_AGEX_is_jmp || from_AGEX_is_br);
+  assign inst_DE = (should_bubble) ? 0 : inst_logic; // inst_DE = 0 should make other values in DE_latch = 0 as well
+    
+    //assign from_DE_to_MEM = {
+       // bb_table
+    //};
 
     assign DE_latch_contents = {
                                   inst_DE,
@@ -166,7 +174,7 @@ module DE_STAGE(
      end else begin
         if (from_WB_write) begin
             regs[from_WB_regno] <= (from_WB_readmem) ? from_WB_memval : from_WB_aluval;
-            bb_table[from_WB_regno] = 1; // set the dest num in bb to 0 here (on neg edge)
+            bb_table[from_WB_regno] = 0; // set the dest num in bb to 0 here (on neg edge)
         end
         if (wr_reg_DE)                        // set busy bits to 1 on this edge too.                         
             bb_table[wregno_DE] = 1;            //if write to x comes in right as one finishes, set x to busy
@@ -181,7 +189,13 @@ module DE_STAGE(
      else begin
      // need to complete. e.g.) stall? 
       DE_latch <= DE_latch_contents;
-      should_bubble <= (inst_logic[31:29] == 3'b001) && !clear_bubble_reg;
+      //should_bubble <= (inst_logic[31:29] == 3'b001) && !clear_bubble_reg;
+      // if not bubbling, bubble if branch instruction in decode, cannot be un-bubbled until if (should_bubble) statement
+      if (!should_bubble)
+        should_bubble <= is_br_DE;
+      //else if(!from_AGEX_br_cond)
+      else if (from_AGEX_is_br)
+        should_bubble <= 0;
      end
   end
 

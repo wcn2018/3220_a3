@@ -33,12 +33,17 @@ module FE_STAGE(
   wire [`INSTBITS-1:0] inst_predict;
   
   // From AGEX
-  wire one;
-  wire two;
-  wire from_AGEX_is_jmp;
   wire from_AGEX_is_br;
-  wire pctarget_AGEX_jmp;
-  wire pctarget_AGEX;
+  wire from_AGEX_is_jmp;
+  wire from_AGEX_br_cond;
+  wire [`DBITS-1:0] from_AGEX_br_target;
+  wire [`DBITS-1:0] from_AGEX_jmp_target;
+  
+  
+  // experimental added signals
+  reg after_branch;
+  
+  
   
   // reading instruction from imem 
   assign inst_FE = imem[PC_FE_latch[`IMEMADDRBITS-1:`IMEMWORDBITS]];
@@ -53,7 +58,8 @@ module FE_STAGE(
    
    // the order of latch contents should be matched in the decode stage when we extract the contents. 
   assign FE_latch_contents = { 
-                                (from_AGEX_is_br) ? inst_predict : inst_FE, 
+                                //(from_AGEX_is_br) ? inst_predict : inst_FE, 
+                                inst_FE,
                                 PC_FE_latch, 
                                 pcplus_FE,
                                  // please feel free to add more signals such as valid bits etc. 
@@ -61,30 +67,44 @@ module FE_STAGE(
                                 `BUS_CANARY_VALUE // for an error checking of bus encoding/decoding  
                                 };
    assign  {
-                              one,
-                              two,
-                              from_AGEX_is_jmp,
                               from_AGEX_is_br,
-                              pctarget_AGEX,
-                              pctarget_AGEX_jmp
+                              from_AGEX_is_jmp,
+                              from_AGEX_br_cond,
+                              from_AGEX_br_target,
+                              from_AGEX_jmp_target
                               } = from_AGEX_to_FE; 
    
-  assign stall_pipe = (((inst_FE[31:28] == 4'b0010) || (inst_FE[31:28] == 4'b0011) && !(from_AGEX_is_br || from_AGEX_is_jmp)));
+  //assign stall_pipe = (((inst_FE[31:28] == 4'b0010) || (inst_FE[31:28] == 4'b0011) && !(from_AGEX_is_br || from_AGEX_is_jmp)));
 //                           || (from_DE_bb_table[inst_FE[/*readreg1*/]] == 1|| from_DE_bb_table[inst_FE[]] == 1)); // you need to complete the logic to compute stall FE stage 
+
+  // to make sure stall after branch instruction passes to decode, stall_pipe only makes pc not increment
+  assign stall_pipe = after_branch;
    
   always @ (posedge clk or posedge reset) begin
     if(reset)
       PC_FE_latch <= `STARTPC;
     else if(!stall_pipe) begin
-            if(from_AGEX_is_br)
-                PC_FE_latch <= pctarget_AGEX;
-            else if (from_AGEX_is_jmp)
-                PC_FE_latch <= pctarget_AGEX_jmp;
-            else
-                PC_FE_latch <= pcplus_FE;         
+            //if(from_AGEX_is_br) // if branch resolved and branch
+             //   PC_FE_latch <= from_AGEX_br_target;
+            //else if (from_AGEX_is_jmp) // if jump
+               // PC_FE_latch <= from_AGEX_jmp_target;
+            //else 
+            
+            if (inst_FE[31:28] == 4'b0010) // if stall_pipe = 0 and current instruction is branch
+                after_branch <= 1;
+            //else
+            PC_FE_latch <= pcplus_FE; // PC = PC + 1 when stall_pipe = 0         
          end
     else
-      PC_FE_latch <= PC_FE_latch;
+      if (from_AGEX_is_br) begin
+        after_branch <= 0;
+        if (from_AGEX_br_cond)
+            PC_FE_latch <= from_AGEX_br_target;
+        else
+            PC_FE_latch <= pcplus_FE;
+        end
+      else
+        PC_FE_latch <= PC_FE_latch;
   end
   
 
@@ -94,8 +114,11 @@ module FE_STAGE(
         FE_latch <= {`FE_latch_WIDTH{1'b0}}; 
         end 
      else   // this is just an example. you need to expand the contents of if/else
-        begin  
-            FE_latch <= FE_latch_contents; 
+        begin
+            if (from_AGEX_is_br && from_AGEX_br_cond)
+                FE_latch <= {`FE_latch_WIDTH{1'b0}};  
+            else
+                FE_latch <= FE_latch_contents; 
         end  
   end
  
