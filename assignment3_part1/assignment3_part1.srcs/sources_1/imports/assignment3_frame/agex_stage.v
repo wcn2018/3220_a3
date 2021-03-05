@@ -146,7 +146,10 @@ module AGEX_STAGE(
                                  }; 
                                  
   assign from_AGEX_to_DE = {
-    (is_jmp_AGEX || is_br_AGEX)
+    is_jmp_AGEX, //1
+    pctarget_AGEX_JMP, //Figure out num bits
+    is_br_AGEX, //1
+    br_cond_AGEX //1
   };
  
   always @ (posedge clk or posedge reset) begin

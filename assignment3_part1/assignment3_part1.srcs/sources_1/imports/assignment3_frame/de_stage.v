@@ -59,7 +59,12 @@ module DE_STAGE(
   wire [`REGNOBITS-1:0] from_WB_regno;
   wire [`DBITS-1:0] from_WB_memval;
   wire [`DBITS-1:0] from_WB_aluval;
-
+  
+  //from AGEX:
+  wire from_AGEX_is_jmp;
+  wire from_AGEX_is_br;
+  wire from_AGEX_brcond;
+  wire [`DBITS-1:0] from_AGEX_jmptarget;
 // extracting a part of opcode 
   
   assign op1_DE = inst_DE[31:26];  // example code 
@@ -108,9 +113,13 @@ module DE_STAGE(
   } = from_WB_to_DE;
 
   assign {
-    clear_bubble_reg
+    from_AGEX_is_jmp,
+    from_AGEX_jmptarget,
+    from_AGEX_is_br,
+    from_AGEX_brcond
   } = from_AGEX_to_DE;
 
+  assign clear_bubble_reg = (from_AGEX_is_jmp || from_AGEX_is_br);
   assign inst_DE = (should_bubble) ? 0 : inst_logic;
     assign from_DE_to_MEM = {
         bb_table
