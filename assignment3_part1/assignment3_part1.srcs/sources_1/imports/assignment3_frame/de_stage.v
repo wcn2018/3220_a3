@@ -50,6 +50,9 @@ module DE_STAGE(
   // experimental added signals
   reg [`DBITS-1:0] prev_inst;
   reg should_bubble;
+  wire busy_stall;
+  reg [`REGNOBITS-1:0] prev_write;
+  reg prev_wr_reg_DE;
   
   wire[`DE_latch_WIDTH-1:0] DE_latch_contents; 
   wire[`BUS_CANARY_WIDTH-1:0] bus_canary_DE; 
@@ -101,7 +104,8 @@ module DE_STAGE(
 
 // decoding the contents of FE latch out. the order should be matched with the fe_stage.v 
   assign {
-            inst_logic, // inst_logic is instruction from fetch, inst_DE is instruction in decode
+            //inst_logic, // inst_logic is instruction from fetch, inst_DE is instruction in decode
+            inst_DE,
             PC_DE, 
             pcplus_DE,
             bus_canary_DE 
@@ -124,17 +128,22 @@ module DE_STAGE(
     from_AGEX_jmp_target
   } = from_AGEX_to_DE;
   
-
+  
+  // from de to fe
+  assign from_DE_to_FE = {busy_stall};
+  
+  // when busy   
+  assign busy_stall = (inst_DE != 0) && (bb_table[rs_DE] == 1 || ((bb_table[rt_DE] == 1 && (op1_DE == 6'b000000 || is_br_DE || wr_mem_DE))));
 
   //assign clear_bubble_reg = (from_AGEX_is_jmp || from_AGEX_is_br);
-  assign inst_DE = (should_bubble) ? 0 : inst_logic; // inst_DE = 0 should make other values in DE_latch = 0 as well
+  //assign inst_DE = (should_bubble) ? 0 : inst_logic; // inst_DE = 0 should make other values in DE_latch = 0 as well
     
     //assign from_DE_to_MEM = {
        // bb_table
     //};
 
     assign DE_latch_contents = {
-                                  inst_DE,
+                                  inst_DE,                         
                                   PC_DE,
                                   pcplus_DE,
                                   op1_DE,
@@ -171,13 +180,21 @@ module DE_STAGE(
 		  regs[13] <= {`DBITS{1'b0}};
 		  regs[14] <= {`DBITS{1'b0}};
 		  regs[15] <= {`DBITS{1'b0}}; 
+		  
+		  should_bubble <= 0;
+		  bb_table <= 0;
+		  prev_write <= 0;
+		  prev_wr_reg_DE <= 0;
      end else begin
         if (from_WB_write) begin
             regs[from_WB_regno] <= (from_WB_readmem) ? from_WB_memval : from_WB_aluval;
-            bb_table[from_WB_regno] = 0; // set the dest num in bb to 0 here (on neg edge)
+            bb_table[from_WB_regno] <= 0; // set the dest num in bb to 0 here (on neg edge)
         end
-        if (wr_reg_DE)                        // set busy bits to 1 on this edge too.                         
-            bb_table[wregno_DE] = 1;            //if write to x comes in right as one finishes, set x to busy
+        //if (wr_reg_DE)                        // set busy bits to 1 on this edge too.                         
+            //prev_write <= wregno_DE;
+        else if (prev_wr_reg_DE)
+            bb_table[prev_write] <= 1;   
+        //bb_table[wregno_DE] = 1;            
      end
   end
 
@@ -188,9 +205,19 @@ module DE_STAGE(
       end
      else begin
      // need to complete. e.g.) stall? 
-      DE_latch <= DE_latch_contents;
+     if (busy_stall || should_bubble)
+        DE_latch <= {`DE_latch_WIDTH{1'b0}};
+     else
+        DE_latch <= DE_latch_contents;
       //should_bubble <= (inst_logic[31:29] == 3'b001) && !clear_bubble_reg;
       // if not bubbling, bubble if branch instruction in decode, cannot be un-bubbled until if (should_bubble) statement
+      //if (wr_reg_DE && (inst_DE != 0))                                              
+            //bb_table[wregno_DE] = 1;  
+      prev_wr_reg_DE <= wr_reg_DE;
+      if (wr_reg_DE)                        // set busy bits to 1 on this edge too.                         
+        prev_write <= wregno_DE;
+        //prev_wr_reg_DE <= 1;
+        //end
       if (!should_bubble)
         should_bubble <= is_br_DE;
       //else if(!from_AGEX_br_cond)

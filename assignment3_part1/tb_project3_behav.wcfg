@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_project3_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_project3" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="922920fs"></ZoomStartTime>
+      <ZoomEndTime time="1175921fs"></ZoomEndTime>
+      <Cursor1Time time="990100fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="218"></NameColumnWidth>
+      <ValueColumnWidth column_width="86"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="28" />
+   <wvobject type="logic" fp_name="/tb_project3/CLOCK_50">
+      <obj_property name="ElementShortName">CLOCK_50</obj_property>
+      <obj_property name="ObjectShortName">CLOCK_50</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/RESET_N">
+      <obj_property name="ElementShortName">RESET_N</obj_property>
+      <obj_property name="ObjectShortName">RESET_N</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/KEY">
+      <obj_property name="ElementShortName">KEY[3:0]</obj_property>
+      <obj_property name="ObjectShortName">KEY[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/HEX0">
+      <obj_property name="ElementShortName">HEX0[6:0]</obj_property>
+      <obj_property name="ObjectShortName">HEX0[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/HEX1">
+      <obj_property name="ElementShortName">HEX1[6:0]</obj_property>
+      <obj_property name="ObjectShortName">HEX1[6:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/LEDR">
+      <obj_property name="ElementShortName">LEDR[9:0]</obj_property>
+      <obj_property name="ObjectShortName">LEDR[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/i">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_FE_stage/PC_FE_latch">
+      <obj_property name="ElementShortName">PC_FE_latch[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_FE_latch[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_DE_stage/PC_DE">
+      <obj_property name="ElementShortName">PC_DE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_DE[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/PC_AGEX">
+      <obj_property name="ElementShortName">PC_AGEX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_AGEX[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_MEM_stage/PC_MEM">
+      <obj_property name="ElementShortName">PC_MEM[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_MEM[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_WB_stage/PC_WB">
+      <obj_property name="ElementShortName">PC_WB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_WB[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/stall_pipe">
+      <obj_property name="ElementShortName">stall_pipe</obj_property>
+      <obj_property name="ObjectShortName">stall_pipe</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_DE_stage/should_bubble">
+      <obj_property name="ElementShortName">should_bubble</obj_property>
+      <obj_property name="ObjectShortName">should_bubble</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/from_AGEX_is_br">
+      <obj_property name="ElementShortName">from_AGEX_is_br</obj_property>
+      <obj_property name="ObjectShortName">from_AGEX_is_br</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/from_AGEX_br_cond">
+      <obj_property name="ElementShortName">from_AGEX_br_cond</obj_property>
+      <obj_property name="ObjectShortName">from_AGEX_br_cond</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_DE_stage/from_AGEX_is_br">
+      <obj_property name="ElementShortName">from_AGEX_is_br</obj_property>
+      <obj_property name="ObjectShortName">from_AGEX_is_br</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_DE_stage/from_AGEX_br_cond">
+      <obj_property name="ElementShortName">from_AGEX_br_cond</obj_property>
+      <obj_property name="ObjectShortName">from_AGEX_br_cond</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_clock/clk_in1">
+      <obj_property name="ElementShortName">clk_in1</obj_property>
+      <obj_property name="ObjectShortName">clk_in1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_clock/clk_out1">
+      <obj_property name="ElementShortName">clk_out1</obj_property>
+      <obj_property name="ObjectShortName">clk_out1</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_clock/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_clock/locked">
+      <obj_property name="ElementShortName">locked</obj_property>
+      <obj_property name="ObjectShortName">locked</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/after_branch">
+      <obj_property name="ElementShortName">after_branch</obj_property>
+      <obj_property name="ObjectShortName">after_branch</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/busy_stall">
+      <obj_property name="ElementShortName">busy_stall</obj_property>
+      <obj_property name="ObjectShortName">busy_stall</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_DE_stage/busy_stall">
+      <obj_property name="ElementShortName">busy_stall</obj_property>
+      <obj_property name="ObjectShortName">busy_stall</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_DE_stage/prev_write">
+      <obj_property name="ElementShortName">prev_write[3:0]</obj_property>
+      <obj_property name="ObjectShortName">prev_write[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_DE_stage/prev_wr_reg_DE">
+      <obj_property name="ElementShortName">prev_wr_reg_DE</obj_property>
+      <obj_property name="ObjectShortName">prev_wr_reg_DE</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_DE_stage/bb_table">
+      <obj_property name="ElementShortName">bb_table[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bb_table[31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+</wave_config>

@@ -62,6 +62,10 @@ module MEM_STAGE(
    
     
    assign MEM_latch_out = MEM_latch; 
+   
+   // set memaddr
+   assign memaddr_MEM = aluout_MEM;
+   assign regval_MEM = 0;
 
    assign {
                                 inst_MEM,
@@ -93,11 +97,12 @@ module MEM_STAGE(
                                         // more signals might need    
                               bus_canary_MEM                   
    };
+
  
   always @ (posedge clk or posedge reset) begin
   // this code need to be completed 
     if(reset) begin
-        MEM_latch <={`MEM_latch_WIDTH{1'b0}}; 
+        MEM_latch <= {`MEM_latch_WIDTH{1'b0}}; 
     end
     else 
      begin 

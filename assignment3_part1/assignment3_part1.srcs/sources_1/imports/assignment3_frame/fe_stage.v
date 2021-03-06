@@ -42,7 +42,7 @@ module FE_STAGE(
   
   // experimental added signals
   reg after_branch;
-  
+  wire busy_stall;
   
   
   // reading instruction from imem 
@@ -73,6 +73,10 @@ module FE_STAGE(
                               from_AGEX_br_target,
                               from_AGEX_jmp_target
                               } = from_AGEX_to_FE; 
+                              
+   assign {
+            busy_stall
+            } = from_DE_to_FE;
    
   //assign stall_pipe = (((inst_FE[31:28] == 4'b0010) || (inst_FE[31:28] == 4'b0011) && !(from_AGEX_is_br || from_AGEX_is_jmp)));
 //                           || (from_DE_bb_table[inst_FE[/*readreg1*/]] == 1|| from_DE_bb_table[inst_FE[]] == 1)); // you need to complete the logic to compute stall FE stage 
@@ -81,8 +85,10 @@ module FE_STAGE(
   assign stall_pipe = after_branch;
    
   always @ (posedge clk or posedge reset) begin
-    if(reset)
+    if(reset) begin
       PC_FE_latch <= `STARTPC;
+      after_branch <= 0;
+      end
     else if(!stall_pipe) begin
             //if(from_AGEX_is_br) // if branch resolved and branch
              //   PC_FE_latch <= from_AGEX_br_target;
@@ -93,18 +99,28 @@ module FE_STAGE(
             if (inst_FE[31:28] == 4'b0010) // if stall_pipe = 0 and current instruction is branch
                 after_branch <= 1;
             //else
-            PC_FE_latch <= pcplus_FE; // PC = PC + 1 when stall_pipe = 0         
+            if (!busy_stall)
+                PC_FE_latch <= pcplus_FE; // PC = PC + 1 when stall_pipe = 0    
+            else
+                PC_FE_latch <= PC_FE_latch;  
          end
-    else
-      if (from_AGEX_is_br) begin
-        after_branch <= 0;
-        if (from_AGEX_br_cond)
+    else if (from_AGEX_is_br) begin     
+        if (from_AGEX_br_cond) begin
             PC_FE_latch <= from_AGEX_br_target;
+            after_branch <= 0;  
+            end
         else
             PC_FE_latch <= pcplus_FE;
+            if (inst_FE[31:28] == 4'b0010)
+                after_branch <= 1;
+            else
+                after_branch <= 0;  
         end
       else
         PC_FE_latch <= PC_FE_latch;
+        
+        
+       
   end
   
 
@@ -115,9 +131,9 @@ module FE_STAGE(
         end 
      else   // this is just an example. you need to expand the contents of if/else
         begin
-            if (from_AGEX_is_br && from_AGEX_br_cond)
+            if (stall_pipe && from_AGEX_is_br && from_AGEX_br_cond)
                 FE_latch <= {`FE_latch_WIDTH{1'b0}};  
-            else
+            else if (!busy_stall)
                 FE_latch <= FE_latch_contents; 
         end  
   end

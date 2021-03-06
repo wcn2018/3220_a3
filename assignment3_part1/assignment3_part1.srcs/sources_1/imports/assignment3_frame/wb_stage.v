@@ -33,6 +33,7 @@ module WB_STAGE(
   wire rd_mem_WB;
   wire [`DBITS-1:0] rd_val_WB;
   wire [`DBITS-1:0] aluout_WB;
+  
 /* HEX0, HEX1 are completed for you.  */ 
  always @ (posedge clk or posedge reset) begin
     if(reset)
@@ -48,7 +49,7 @@ module WB_STAGE(
  
     
    assign {
-                                inst_WB,
+                                inst_WB,                        
                                 PC_WB,
                                 memaddr_WB,
                                 regval_WB,
@@ -62,6 +63,9 @@ module WB_STAGE(
                                 // more signals might need                        
                                  bus_canary_WB 
                                  } = from_MEM_latch; 
+                                 
+                                 
+                      
         
         // write register by sending data to the DE stage 
    assign from_WB_to_DE = {
