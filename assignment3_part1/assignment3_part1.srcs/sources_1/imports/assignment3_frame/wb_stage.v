@@ -77,6 +77,13 @@ module WB_STAGE(
    };
         
   // **TODO: Write the code for LEDR here
+   always @ (posedge clk or posedge reset) begin
+    if(reset)
+	   LEDR_out <= 0;
+	 else if(wr_mem_WB && (memaddr_WB == `ADDRLEDR))
+	 //else
+      LEDR_out <= regval2_WB[`LEDRBITS-1:0];
+  end
 
   assign LEDR = LEDR_out;
   

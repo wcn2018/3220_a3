@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Fri Mar  5 22:12:00 2021
+| Date         : Thu Mar 18 16:36:31 2021
 | Host         : synestia6 running 64-bit Ubuntu 18.04.5 LTS
 | Command      : report_methodology -file project3_frame_methodology_drc_routed.rpt -pb project3_frame_methodology_drc_routed.pb -rpx project3_frame_methodology_drc_routed.rpx
 | Design       : project3_frame
@@ -23,13 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 2070
+             Violations found: 2080
 +-----------+------------------+------------------------------------------------------------------+------------+
 | Rule      | Severity         | Description                                                      | Violations |
 +-----------+------------------+------------------------------------------------------------------+------------+
 | TIMING-6  | Critical Warning | No common primary clock between related clocks                   | 2          |
 | SYNTH-5   | Warning          | Mapped onto distributed RAM because of timing constraints        | 2048       |
-| TIMING-18 | Warning          | Missing input or output delay                                    | 18         |
+| TIMING-18 | Warning          | Missing input or output delay                                    | 28         |
 | TIMING-56 | Warning          | Missing logically or physically excluded clock groups constraint | 2          |
 +-----------+------------------+------------------------------------------------------------------+------------+
 
@@ -10373,6 +10373,56 @@ Related violations: <none>
 TIMING-18#18 Warning
 Missing input or output delay  
 An output delay is missing on HEX1[6] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#19 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[0] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#20 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[1] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#21 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[2] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#22 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[3] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#23 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[4] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#24 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[5] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#25 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[6] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#26 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[7] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#27 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[8] relative to clock(s) CLOCK_50, sys_clk_pin
+Related violations: <none>
+
+TIMING-18#28 Warning
+Missing input or output delay  
+An output delay is missing on LEDR[9] relative to clock(s) CLOCK_50, sys_clk_pin
 Related violations: <none>
 
 TIMING-56#1 Warning

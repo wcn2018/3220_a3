@@ -2,15 +2,15 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Mar  5 21:57:10 2021
-# Process ID: 12747
+# Start of session at: Thu Mar 18 16:22:22 2021
+# Process ID: 26602
 # Current directory: /home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1
 # Command line: vivado -log project3_frame.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project3_frame.tcl
 # Log file: /home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1/project3_frame.vds
 # Journal file: /home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
 source project3_frame.tcl -notrace
-create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2397.949 ; gain = 2.016 ; free physical = 4353 ; free virtual = 8352
+create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2393.977 ; gain = 2.016 ; free physical = 3139 ; free virtual = 7456
 Command: synth_design -top project3_frame -part xc7z020clg400-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
@@ -18,44 +18,44 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 12995
+INFO: [Synth 8-7075] Helper process launched with PID 26739
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 2398.156 ; gain = 0.000 ; free physical = 2989 ; free virtual = 6987
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 2394.184 ; gain = 0.000 ; free physical = 2503 ; free virtual = 6821
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'project3_frame' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/project3_frame.v:3]
-INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1/.Xil/Vivado-12747-synestia6/realtime/clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (1#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1/.Xil/Vivado-12747-synestia6/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1/.Xil/Vivado-26602-synestia6/realtime/clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (1#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1/.Xil/Vivado-26602-synestia6/realtime/clk_wiz_0_stub.v:5]
 INFO: [Synth 8-6157] synthesizing module 'FE_STAGE' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/fe_stage.v:4]
-INFO: [Synth 8-3876] $readmem data file 'test5.mem' is read successfully [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/fe_stage.v:20]
+INFO: [Synth 8-3876] $readmem data file 'testall.mem' is read successfully [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/fe_stage.v:20]
 INFO: [Synth 8-6155] done synthesizing module 'FE_STAGE' (2#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/fe_stage.v:4]
 INFO: [Synth 8-6157] synthesizing module 'DE_STAGE' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:4]
-INFO: [Synth 8-6157] synthesizing module 'SXT' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:234]
+INFO: [Synth 8-6157] synthesizing module 'SXT' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:248]
 	Parameter IBITS bound to: 16 - type: integer 
 	Parameter OBITS bound to: 32 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'SXT' (3#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:234]
+INFO: [Synth 8-6155] done synthesizing module 'SXT' (3#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:248]
 INFO: [Synth 8-6155] done synthesizing module 'DE_STAGE' (4#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:4]
 INFO: [Synth 8-6157] synthesizing module 'AGEX_STAGE' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/agex_stage.v:4]
 WARNING: [Synth 8-567] referenced signal 'PC_AGEX' should be on the sensitivity list [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/agex_stage.v:62]
 INFO: [Synth 8-6155] done synthesizing module 'AGEX_STAGE' (5#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/agex_stage.v:4]
 INFO: [Synth 8-6157] synthesizing module 'MEM_STAGE' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/mem_stage.v:3]
-INFO: [Synth 8-3876] $readmem data file 'test5.mem' is read successfully [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/mem_stage.v:20]
+INFO: [Synth 8-3876] $readmem data file 'testall.mem' is read successfully [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/mem_stage.v:20]
 INFO: [Synth 8-6155] done synthesizing module 'MEM_STAGE' (6#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/mem_stage.v:3]
 INFO: [Synth 8-6157] synthesizing module 'WB_STAGE' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/wb_stage.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'WB_STAGE' (7#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/wb_stage.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'project3_frame' (8#1) [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/project3_frame.v:3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 2398.156 ; gain = 0.000 ; free physical = 3771 ; free virtual = 7770
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 2394.184 ; gain = 0.000 ; free physical = 2576 ; free virtual = 6894
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2407.062 ; gain = 8.906 ; free physical = 3769 ; free virtual = 7768
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2404.090 ; gain = 9.906 ; free physical = 2573 ; free virtual = 6891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2407.062 ; gain = 8.906 ; free physical = 3769 ; free virtual = 7768
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2404.090 ; gain = 9.906 ; free physical = 2573 ; free virtual = 6891
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2407.062 ; gain = 0.000 ; free physical = 3760 ; free virtual = 7759
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2404.090 ; gain = 0.000 ; free physical = 2566 ; free virtual = 6884
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -68,20 +68,20 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/project3_frame_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2542.797 ; gain = 0.000 ; free physical = 3650 ; free virtual = 7649
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2540.855 ; gain = 0.000 ; free physical = 2471 ; free virtual = 6789
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2542.797 ; gain = 0.000 ; free physical = 3650 ; free virtual = 7649
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2540.855 ; gain = 0.000 ; free physical = 2471 ; free virtual = 6789
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:28 . Memory (MB): peak = 2542.797 ; gain = 144.641 ; free physical = 3726 ; free virtual = 7725
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.855 ; gain = 146.672 ; free physical = 2544 ; free virtual = 6862
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:28 . Memory (MB): peak = 2542.797 ; gain = 144.641 ; free physical = 3726 ; free virtual = 7725
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.855 ; gain = 146.672 ; free physical = 2544 ; free virtual = 6862
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -90,10 +90,10 @@ Applied set_property IO_BUFFER_TYPE = NONE for CLOCK_50. (constraint file  /home
 Applied set_property CLOCK_BUFFER_TYPE = NONE for CLOCK_50. (constraint file  /home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
 Applied set_property KEEP_HIERARCHY = SOFT for my_clock. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:28 . Memory (MB): peak = 2542.797 ; gain = 144.641 ; free physical = 3726 ; free virtual = 7725
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:27 . Memory (MB): peak = 2540.855 ; gain = 146.672 ; free physical = 2544 ; free virtual = 6862
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:30 . Memory (MB): peak = 2542.797 ; gain = 144.641 ; free physical = 3718 ; free virtual = 7718
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:29 . Memory (MB): peak = 2540.855 ; gain = 146.672 ; free physical = 2536 ; free virtual = 6855
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -110,6 +110,7 @@ Detailed RTL Component Info :
 	              100 Bit    Registers := 1     
 	               32 Bit    Registers := 24    
 	               24 Bit    Registers := 1     
+	               10 Bit    Registers := 1     
 	                4 Bit    Registers := 2     
 	                1 Bit    Registers := 4     
 +---RAMs : 
@@ -117,12 +118,15 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   2 Input  219 Bit        Muxes := 1     
 	   2 Input  100 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 9     
-	  15 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 8     
+	 232 Input   32 Bit        Muxes := 1     
+	  14 Input   32 Bit        Muxes := 1     
 	   5 Input   32 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	  15 Input    4 Bit        Muxes := 1     
 	   5 Input    3 Bit        Muxes := 1     
 	   2 Input    1 Bit        Muxes := 23    
+	   3 Input    1 Bit        Muxes := 1     
 	   4 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -139,39 +143,30 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_wr_reg_DE_reg__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:187]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:187]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:187]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[3]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[2]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[1]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[0]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:186]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/should_bubble_reg__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:184]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:184]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:184]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[3]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[2]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[1]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_write_reg[0]__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:193]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/prev_wr_reg_DE_reg__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:194]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:194]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:194]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'my_DE_stage/should_bubble_reg__0/Q' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:191]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:191]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v:191]
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:48 . Memory (MB): peak = 2542.797 ; gain = 144.641 ; free physical = 3678 ; free virtual = 7684
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:48 ; elapsed = 00:00:56 . Memory (MB): peak = 2540.855 ; gain = 146.672 ; free physical = 2488 ; free virtual = 6812
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
-
-ROM: Preliminary Mapping	Report
-+------------+------------+---------------+----------------+
-|Module Name | RTL Object | Depth x Width | Implemented As | 
-+------------+------------+---------------+----------------+
-|FE_STAGE    | p_0_out    | 4096x20       | LUT            | 
-|FE_STAGE    | p_0_out    | 4096x20       | LUT            | 
-+------------+------------+---------------+----------------+
-
 
 Distributed RAM: Preliminary Mapping	Report (see note below)
 +---------------+-----------------------+-----------+----------------------+-------------------+
@@ -188,13 +183,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:50 ; elapsed = 00:01:00 . Memory (MB): peak = 2542.797 ; gain = 144.641 ; free physical = 3552 ; free virtual = 7557
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:59 ; elapsed = 00:01:08 . Memory (MB): peak = 2540.855 ; gain = 146.672 ; free physical = 2374 ; free virtual = 6698
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:58 ; elapsed = 00:01:07 . Memory (MB): peak = 2576.383 ; gain = 178.227 ; free physical = 3514 ; free virtual = 7520
+Finished Timing Optimization : Time (s): cpu = 00:01:04 ; elapsed = 00:01:12 . Memory (MB): peak = 2540.855 ; gain = 146.672 ; free physical = 2362 ; free virtual = 6686
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -214,7 +209,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:02 ; elapsed = 00:01:12 . Memory (MB): peak = 2576.383 ; gain = 178.227 ; free physical = 3509 ; free virtual = 7514
+Finished Technology Mapping : Time (s): cpu = 00:01:09 ; elapsed = 00:01:19 . Memory (MB): peak = 2562.871 ; gain = 168.688 ; free physical = 2360 ; free virtual = 6684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -232,37 +227,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:08 ; elapsed = 00:01:18 . Memory (MB): peak = 2585.289 ; gain = 187.133 ; free physical = 3515 ; free virtual = 7521
+Finished IO Insertion : Time (s): cpu = 00:01:15 ; elapsed = 00:01:24 . Memory (MB): peak = 2575.746 ; gain = 181.562 ; free physical = 2360 ; free virtual = 6684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:08 ; elapsed = 00:01:18 . Memory (MB): peak = 2585.289 ; gain = 187.133 ; free physical = 3515 ; free virtual = 7521
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:15 ; elapsed = 00:01:24 . Memory (MB): peak = 2575.746 ; gain = 181.562 ; free physical = 2361 ; free virtual = 6684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:09 ; elapsed = 00:01:19 . Memory (MB): peak = 2585.289 ; gain = 187.133 ; free physical = 3515 ; free virtual = 7521
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:26 . Memory (MB): peak = 2575.746 ; gain = 181.562 ; free physical = 2360 ; free virtual = 6684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:09 ; elapsed = 00:01:19 . Memory (MB): peak = 2585.289 ; gain = 187.133 ; free physical = 3515 ; free virtual = 7521
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:26 . Memory (MB): peak = 2575.746 ; gain = 181.562 ; free physical = 2360 ; free virtual = 6684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:09 ; elapsed = 00:01:20 . Memory (MB): peak = 2585.289 ; gain = 187.133 ; free physical = 3515 ; free virtual = 7521
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:16 ; elapsed = 00:01:26 . Memory (MB): peak = 2575.746 ; gain = 181.562 ; free physical = 2362 ; free virtual = 6686
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:09 ; elapsed = 00:01:20 . Memory (MB): peak = 2585.289 ; gain = 187.133 ; free physical = 3515 ; free virtual = 7521
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:16 ; elapsed = 00:01:26 . Memory (MB): peak = 2575.746 ; gain = 181.562 ; free physical = 2362 ; free virtual = 6686
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -280,35 +275,34 @@ Report Cell Usage:
 |      |Cell      |Count |
 +------+----------+------+
 |1     |clk_wiz   |     1|
-|2     |CARRY4    |    54|
-|3     |LUT1      |     5|
-|4     |LUT2      |   227|
-|5     |LUT3      |    47|
-|6     |LUT4      |   113|
-|7     |LUT5      |    98|
-|8     |LUT6      |   847|
-|9     |MUXF7     |   256|
-|10    |MUXF8     |    72|
+|2     |CARRY4    |    62|
+|3     |LUT1      |     4|
+|4     |LUT2      |   142|
+|5     |LUT3      |    80|
+|6     |LUT4      |   141|
+|7     |LUT5      |   124|
+|8     |LUT6      |  1323|
+|9     |MUXF7     |   433|
+|10    |MUXF8     |   138|
 |11    |RAM256X1S |  2048|
-|12    |FDCE      |   594|
+|12    |FDCE      |   942|
 |13    |FDPE      |     6|
 |14    |IBUF      |     5|
-|15    |OBUF      |    14|
-|16    |OBUFT     |    10|
+|15    |OBUF      |    24|
 +------+----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:09 ; elapsed = 00:01:20 . Memory (MB): peak = 2585.289 ; gain = 187.133 ; free physical = 3515 ; free virtual = 7521
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:17 ; elapsed = 00:01:26 . Memory (MB): peak = 2575.746 ; gain = 181.562 ; free physical = 2362 ; free virtual = 6686
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 18 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:05 ; elapsed = 00:01:14 . Memory (MB): peak = 2585.289 ; gain = 51.398 ; free physical = 3572 ; free virtual = 7578
-Synthesis Optimization Complete : Time (s): cpu = 00:01:10 ; elapsed = 00:01:20 . Memory (MB): peak = 2585.297 ; gain = 187.133 ; free physical = 3572 ; free virtual = 7578
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:12 ; elapsed = 00:01:21 . Memory (MB): peak = 2575.746 ; gain = 44.797 ; free physical = 2416 ; free virtual = 6740
+Synthesis Optimization Complete : Time (s): cpu = 00:01:17 ; elapsed = 00:01:26 . Memory (MB): peak = 2575.754 ; gain = 181.562 ; free physical = 2416 ; free virtual = 6740
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2585.297 ; gain = 0.000 ; free physical = 3660 ; free virtual = 7665
-INFO: [Netlist 29-17] Analyzing 2430 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.11 . Memory (MB): peak = 2575.754 ; gain = 0.000 ; free physical = 2501 ; free virtual = 6825
+INFO: [Netlist 29-17] Analyzing 2681 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 2 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2596.195 ; gain = 0.000 ; free physical = 3591 ; free virtual = 7597
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2575.754 ; gain = 0.000 ; free physical = 2433 ; free virtual = 6757
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 2048 instances were transformed.
   RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 2048 instances
@@ -316,8 +310,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 33 Infos, 1 Warnings, 18 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:34 ; elapsed = 00:02:21 . Memory (MB): peak = 2596.195 ; gain = 198.246 ; free physical = 3761 ; free virtual = 7767
+synth_design: Time (s): cpu = 00:01:41 ; elapsed = 00:02:28 . Memory (MB): peak = 2575.754 ; gain = 181.777 ; free physical = 2586 ; free virtual = 6910
 INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
 INFO: [Common 17-1381] The checkpoint '/home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/synth_1/project3_frame.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file project3_frame_utilization_synth.rpt -pb project3_frame_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Mar  5 22:00:04 2021...
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 18 16:25:24 2021...

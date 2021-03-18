@@ -84,7 +84,7 @@ module DE_STAGE(
   
   assign regval1_DE = regs[rs_DE];
   assign regval2_DE = regs[rt_DE];
-  assign writes_rt = ((op1_DE == 6'b010010) || (inst_DE[31] == 1'b1));
+  assign writes_rt = ((op1_DE == 6'b010010) || (inst_DE[31] == 1'b1) || (is_jmp_DE));
   
   assign is_br_DE = (inst_DE[31:28] == 4'b0010);
   assign is_jmp_DE = (inst_DE[31:28] == 4'b0011);
@@ -132,8 +132,15 @@ module DE_STAGE(
   // from de to fe
   assign from_DE_to_FE = {busy_stall};
   
+  wire busy_rs;
+  wire busy_rt;
+  
+  assign busy_rs = bb_table[rs_DE];
+  assign busy_rt = bb_table[rt_DE];
+  
   // when busy   
   assign busy_stall = (inst_DE != 0) && (bb_table[rs_DE] == 1 || ((bb_table[rt_DE] == 1 && (op1_DE == 6'b000000 || is_br_DE || wr_mem_DE))));
+  
 
   //assign clear_bubble_reg = (from_AGEX_is_jmp || from_AGEX_is_br);
   //assign inst_DE = (should_bubble) ? 0 : inst_logic; // inst_DE = 0 should make other values in DE_latch = 0 as well
@@ -192,7 +199,7 @@ module DE_STAGE(
         end
         //if (wr_reg_DE)                        // set busy bits to 1 on this edge too.                         
             //prev_write <= wregno_DE;
-        else if (prev_wr_reg_DE)
+        if (prev_wr_reg_DE)
             bb_table[prev_write] <= 1;   
         //bb_table[wregno_DE] = 1;            
      end
@@ -213,15 +220,22 @@ module DE_STAGE(
       // if not bubbling, bubble if branch instruction in decode, cannot be un-bubbled until if (should_bubble) statement
       //if (wr_reg_DE && (inst_DE != 0))                                              
             //bb_table[wregno_DE] = 1;  
-      prev_wr_reg_DE <= wr_reg_DE;
-      if (wr_reg_DE)                        // set busy bits to 1 on this edge too.                         
-        prev_write <= wregno_DE;
+      if (!busy_stall) begin
+        prev_wr_reg_DE <= wr_reg_DE;
+        if (wr_reg_DE)                                        
+            prev_write <= wregno_DE;
+        end
+      else begin
+        prev_wr_reg_DE <= 0;
+        prev_write <= 0;
+        end
+        
         //prev_wr_reg_DE <= 1;
         //end
-      if (!should_bubble)
-        should_bubble <= is_br_DE;
+      if ((!should_bubble) && (!busy_stall))       
+        should_bubble <= (is_br_DE || is_jmp_DE);
       //else if(!from_AGEX_br_cond)
-      else if (from_AGEX_is_br)
+      else if ((from_AGEX_is_br || from_AGEX_is_jmp))
         should_bubble <= 0;
      end
   end

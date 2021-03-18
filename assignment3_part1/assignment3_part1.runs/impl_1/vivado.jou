@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Mar  5 22:00:26 2021
-# Process ID: 13532
+# Start of session at: Thu Mar 18 16:25:55 2021
+# Process ID: 27098
 # Current directory: /home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/impl_1
 # Command line: vivado -log project3_frame.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source project3_frame.tcl -notrace
 # Log file: /home/plee304/3220_a3part1/3220_a3/assignment3_part1/assignment3_part1.runs/impl_1/project3_frame.vdi

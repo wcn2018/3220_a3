@@ -41,7 +41,7 @@ module FE_STAGE(
   
   
   // experimental added signals
-  reg after_branch;
+  reg after_branch; // or jump
   wire busy_stall;
   
   
@@ -96,7 +96,7 @@ module FE_STAGE(
                // PC_FE_latch <= from_AGEX_jmp_target;
             //else 
             
-            if (inst_FE[31:28] == 4'b0010) // if stall_pipe = 0 and current instruction is branch
+            if (((inst_FE[31:28] == 4'b0010) || (inst_FE[31:28] == 4'b0011)) && !busy_stall) // if stall_pipe = 0 and current instruction is branch or jump
                 after_branch <= 1;
             //else
             if (!busy_stall)
@@ -104,13 +104,18 @@ module FE_STAGE(
             else
                 PC_FE_latch <= PC_FE_latch;  
          end
-    else if (from_AGEX_is_br) begin     
-        if (from_AGEX_br_cond) begin
+    else if ((from_AGEX_is_br || from_AGEX_is_jmp)) begin
+        if (from_AGEX_is_jmp) begin
+            PC_FE_latch <= from_AGEX_jmp_target;
+            after_branch <= 0; 
+        end   
+        else if (from_AGEX_br_cond) begin
             PC_FE_latch <= from_AGEX_br_target;
             after_branch <= 0;  
             end
         else
-            PC_FE_latch <= pcplus_FE;
+            PC_FE_latch <= PC_FE_latch;
+            //PC_FE_latch <= pcplus_FE;
             if (inst_FE[31:28] == 4'b0010)
                 after_branch <= 1;
             else
@@ -131,7 +136,8 @@ module FE_STAGE(
         end 
      else   // this is just an example. you need to expand the contents of if/else
         begin
-            if (stall_pipe && from_AGEX_is_br && from_AGEX_br_cond)
+            //if (stall_pipe && ((from_AGEX_is_br && from_AGEX_br_cond) || from_AGEX_is_jmp))
+            if (stall_pipe && !busy_stall && !(inst_FE[31:28] == 4'b0010))
                 FE_latch <= {`FE_latch_WIDTH{1'b0}};  
             else if (!busy_stall)
                 FE_latch <= FE_latch_contents; 

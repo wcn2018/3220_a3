@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Fri Mar  5 22:11:21 2021
+| Date         : Thu Mar 18 16:35:51 2021
 | Host         : synestia6 running 64-bit Ubuntu 18.04.5 LTS
 | Command      : report_drc -file project3_frame_drc_routed.rpt -pb project3_frame_drc_routed.pb -rpx project3_frame_drc_routed.rpx
 | Design       : project3_frame
