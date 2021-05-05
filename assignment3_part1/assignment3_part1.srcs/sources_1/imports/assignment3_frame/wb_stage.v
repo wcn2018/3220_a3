@@ -75,6 +75,11 @@ module WB_STAGE(
                                 rd_val_WB, //DBITS memory read value
                                 aluout_WB  //DBITS
    };
+
+   assign from_WB_to_AGEX = {
+                                wregno_WB,
+                                wr_reg_WB
+   };
         
   // **TODO: Write the code for LEDR here
    always @ (posedge clk or posedge reset) begin

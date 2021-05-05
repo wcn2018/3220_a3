@@ -93,7 +93,7 @@
   `define from_WB_to_DE_WIDTH  (1 + 1 + `REGNOBITS + `DBITS + `DBITS)
 
   `define from_MEM_to_AGEX_WIDTH  4 + 1 + `DBITS
-  `define from_WB_to_AGEX_WIDTH  4 
+  `define from_WB_to_AGEX_WIDTH  4 + 1
 
   `define from_WB_to_MEM_WIDTH 4 
 

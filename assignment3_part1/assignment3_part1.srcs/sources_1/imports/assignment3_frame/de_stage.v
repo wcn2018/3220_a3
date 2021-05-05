@@ -142,8 +142,9 @@ module DE_STAGE(
   assign busy_rt = bb_table[rt_DE];
   
   // when busy   
-  assign busy_stall = (inst_DE != 0) && (bb_table[rs_DE] == 1 || ((bb_table[rt_DE] == 1 && (op1_DE == 6'b000000 || is_br_DE || wr_mem_DE))));
-  
+  //assign busy_stall = (inst_DE != 0) && (bb_table[rs_DE] == 1 || ((bb_table[rt_DE] == 1 && (op1_DE == 6'b000000 || is_br_DE || wr_mem_DE))));
+  //old busy stall ^^^^^^^^
+  assign busy_stall = 0; //removed need for stalls with dataforwarding, bubbles (for BR) still needed, this should keep logic intact w/minimal change
 
   //assign clear_bubble_reg = (from_AGEX_is_jmp || from_AGEX_is_br);
   //assign inst_DE = (should_bubble) ? 0 : inst_logic; // inst_DE = 0 should make other values in DE_latch = 0 as well
