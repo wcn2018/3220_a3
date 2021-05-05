@@ -9,7 +9,9 @@ module DE_STAGE(
   input [`from_MEM_to_DE_WIDTH-1:0] from_MEM_to_DE,     
   input [`from_WB_to_DE_WIDTH-1:0] from_WB_to_DE,  
   output [`from_DE_to_FE_WIDTH-1:0] from_DE_to_FE,   
-  output[`DE_latch_WIDTH-1:0] DE_latch_out
+  output[`DE_latch_WIDTH-1:0] DE_latch_out,
+  output[`from_DE_to_AGEX_WIDTH-1:0] from_DE_to_AGEX,
+  output[`from_DE_to_MEM_WIDTH-1:0] from_DE_to_MEM
   //output [15:0] from_DE_to_MEM //equal to num registers
 );
 
@@ -131,6 +133,16 @@ module DE_STAGE(
   
   // from de to fe
   assign from_DE_to_FE = {busy_stall};
+  
+  //from de to agex
+  assign from_DE_to_AGEX = {
+    1
+  };
+  
+  //form de to mem
+  assign from_DE_to_MEM = {
+    1
+  };
   
   wire busy_rs;
   wire busy_rt;
