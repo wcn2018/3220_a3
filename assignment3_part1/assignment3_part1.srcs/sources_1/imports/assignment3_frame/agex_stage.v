@@ -5,7 +5,7 @@ module AGEX_STAGE(
   input clk,
   input reset,
   input [`from_MEM_to_AGEX_WIDTH-1:0] from_MEM_to_AGEX,    
-  input [`from_WB_to_AGEX_WIDTH-1:0] from_WB_to_AGEX,   
+  //input [`from_WB_to_AGEX_WIDTH-1:0] from_WB_to_AGEX,   
   input [`DE_latch_WIDTH-1:0] from_DE_latch,
   output[`AGEX_latch_WIDTH-1:0] AGEX_latch_out,
   output[`from_AGEX_to_FE_WIDTH-1:0] from_AGEX_to_FE,
@@ -26,10 +26,29 @@ module AGEX_STAGE(
   wire [`OP2BITS-1:0] op2_AGEX;
   wire [`IMMBITS-1:0] imm_AGEX;
 
-  
+  //from registers
   wire signed [`DBITS-1:0] regval1_AGEX;
   wire signed [`DBITS-1:0] regval2_AGEX;
   wire signed [`DBITS-1:0] sxt_imm_AGEX;
+
+  //from forward option (just use ALUOUT)
+  //wire signed [`DBITS-1:0] forward1;
+  //wire signed [`DBITS-1:0] forward2;
+
+  //after forwarding selection
+  wire signed [`DBITS-1:0] raw1;
+  wire signed [`DBITS-1:0] raw2;
+
+  //select whether to forward or not
+  wire forward_check1;
+  wire forward_check2;
+
+  //alu value from previous op (write val)
+  wire [`DBITS-1:0] alu_forward; 
+
+  //previous destination (for hazard check)
+  wire [3:0] previous_dest;
+  wire prev_write;
 
   wire is_br_AGEX;
   wire is_jmp_AGEX;
@@ -43,9 +62,11 @@ module AGEX_STAGE(
   
   wire[`DBITS-1:0] pctarget_AGEX;
   wire[`DBITS-1:0] pctarget_AGEX_JMP; 
-  
-  
-    wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
+
+  wire[3:0] incoming_reg1;
+  wire[3:0] incoming_reg2;
+
+  wire[`BUS_CANARY_WIDTH-1:0] bus_canary_AGEX; 
  // **TODO: Complete the rest of the pipeline 
  
   
@@ -101,8 +122,17 @@ module AGEX_STAGE(
     // assign pctarget_AGEX = br_cond_AGEX ? (PC_AGEX + 4 + 4 * sxt_imm_AGEX): {`DBITS{1'b0}};
     assign pctarget_AGEX = PC_AGEX + 4 + 4 * sxt_imm_AGEX;
     assign pctarget_AGEX_JMP = regval1_AGEX + 4 * sxt_imm_AGEX;
-    
-    
+
+    assign previous_dest = from_MEM_to_AGEX[0:3];
+    assign prev_write = from_MEM_to_AGEX[4];
+
+    assign forward_check1 = ((incoming_reg1 == previous_dest) & prev_write);
+    assign forward_check2 = ((incoming_reg2 == previous_dest) & prev_write);
+
+    assign alu_forward = from_MEM_to_AGEX[5:from_MEM_to_AGEX_WIDTH-1];
+
+    assign regval1_AGEX = forward_check1 ? alu_forward: raw1;
+    assign regval2_AGEX = forward_check2 ? alu_forward: raw2;
 
     assign  {
                                   inst_AGEX,
@@ -110,16 +140,19 @@ module AGEX_STAGE(
                                   pcplus_AGEX,
                                   op1_AGEX,
                                   op2_AGEX,
-
-                                  regval1_AGEX,
-                                  regval2_AGEX,
+                                  raw1,
+                                  //regval1_AGEX,
+                                  raw2,
+                                  //regval2_AGEX,
                                   sxt_imm_AGEX,                                
                                   is_br_AGEX,
                                   is_jmp_AGEX,
                                   rd_mem_AGEX,
                                   wr_mem_AGEX,
                                   wr_reg_AGEX,
-                                  wregno_AGEX, 
+                                  wregno_AGEX,
+                                  incoming_reg1,
+                                  incoming_reg2,
                                           // more signals might need
                                   bus_canary_AGEX
                                   } = from_DE_latch; 

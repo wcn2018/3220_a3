@@ -10,13 +10,13 @@ module DE_STAGE(
   input [`from_WB_to_DE_WIDTH-1:0] from_WB_to_DE,  
   output [`from_DE_to_FE_WIDTH-1:0] from_DE_to_FE,   
   output[`DE_latch_WIDTH-1:0] DE_latch_out,
-  output[`from_DE_to_AGEX_WIDTH-1:0] from_DE_to_AGEX,
-  output[`from_DE_to_MEM_WIDTH-1:0] from_DE_to_MEM
+  //output[`from_DE_to_AGEX_WIDTH-1:0] from_DE_to_AGEX,
+  //output[`from_DE_to_MEM_WIDTH-1:0] from_DE_to_MEM
   //output [15:0] from_DE_to_MEM //equal to num registers
 );
 
 /* pipeline latch*/ 
- reg [`DE_latch_WIDTH-1:0] DE_latch;
+  reg [`DE_latch_WIDTH-1:0] DE_latch;
 
   /* register file */ 
   reg [`DBITS-1:0] regs [`REGWORDS-1:0];
@@ -134,15 +134,6 @@ module DE_STAGE(
   // from de to fe
   assign from_DE_to_FE = {busy_stall};
   
-  //from de to agex
-  assign from_DE_to_AGEX = {
-    1
-  };
-  
-  //form de to mem
-  assign from_DE_to_MEM = {
-    1
-  };
   
   wire busy_rs;
   wire busy_rt;
@@ -176,6 +167,8 @@ module DE_STAGE(
                                   wr_mem_DE,
                                   wr_reg_DE,
                                   wregno_DE,
+                                  rs_DE,
+                                  rt_DE,
 
                                   // more signals might need
                                    bus_canary_DE 

@@ -76,14 +76,14 @@
 
   
   `define FE_latch_WIDTH  (`INSTBITS+`DBITS+`DBITS+`BUS_CANARY_WIDTH)
-  `define DE_latch_WIDTH  (`INSTBITS+`DBITS+`DBITS+`OP1BITS+`OP2BITS+`DBITS+`DBITS+`DBITS + 1 + 1 + 1 + 1 + 1+ `REGNOBITS + `BUS_CANARY_WIDTH)
+  `define DE_latch_WIDTH  (`INSTBITS+`DBITS+`DBITS+`OP1BITS+`OP2BITS+`DBITS+`DBITS+`DBITS + 1 + 1 + 1 + 1 + 1+ `REGNOBITS + 8 + `BUS_CANARY_WIDTH)
 
   `define AGEX_latch_WIDTH  (`INSTBITS+`DBITS+`DBITS + `DBITS + 1 + 1 + 1 + `REGNOBITS + `BUS_CANARY_WIDTH)
   `define MEM_latch_WIDTH   (`INSTBITS+`DBITS+`DBITS +`DBITS + `DBITS + 1 + 1 + `REGNOBITS + 1 + `DBITS + `DBITS + `BUS_CANARY_WIDTH)
 
   `define from_DE_to_FE_WIDTH  1
-  `define from_DE_to_AGEX_WIDTH 4
-  `define from_DE_to_MEM_WIDTH 4
+  //`define from_DE_to_AGEX_WIDTH 4
+  //`define from_DE_to_MEM_WIDTH 4
   `define from_AGEX_to_FE_WIDTH (1 + 1 + 1 + `DBITS + `DBITS ) // is_br, is_jmp, br_cond, br_target, jmp_target
   `define from_MEM_to_FE_WIDTH 4
   `define from_WB_to_FE_WIDTH 4
@@ -92,7 +92,7 @@
   `define from_MEM_to_DE_WIDTH 4 
   `define from_WB_to_DE_WIDTH  (1 + 1 + `REGNOBITS + `DBITS + `DBITS)
 
-  `define from_MEM_to_AGEX_WIDTH  4 
+  `define from_MEM_to_AGEX_WIDTH  4 + 1 + `DBITS
   `define from_WB_to_AGEX_WIDTH  4 
 
   `define from_WB_to_MEM_WIDTH 4 

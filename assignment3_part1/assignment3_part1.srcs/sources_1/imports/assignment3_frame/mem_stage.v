@@ -9,7 +9,7 @@ module MEM_STAGE(
   output[`MEM_latch_WIDTH-1:0] MEM_latch_out,
   output[`from_MEM_to_FE_WIDTH-1:0] from_MEM_to_FE,
   output[`from_MEM_to_DE_WIDTH-1:0] from_MEM_to_DE,
-  output[`from_WB_to_AGEX_WIDTH-1:0] from_MEM_to_AGEX
+  output[`from_MEM_to_AGEX_WIDTH-1:0] from_MEM_to_AGEX
 );
   // D-MEM
   (* ram_init_file = `IDMEMINITFILE *)
@@ -97,6 +97,12 @@ module MEM_STAGE(
                                         // more signals might need    
                               bus_canary_MEM                   
    };
+
+   assign from_MEM_to_AGEX = {
+                                wregno_MEM,
+                                wr_reg_MEM,
+                                aluout_MEM
+   }
 
  
   always @ (posedge clk or posedge reset) begin
