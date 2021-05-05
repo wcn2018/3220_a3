@@ -102,7 +102,7 @@ module MEM_STAGE(
                                 wregno_MEM,
                                 wr_reg_MEM,
                                 aluout_MEM
-   }
+   };
 
  
   always @ (posedge clk or posedge reset) begin
