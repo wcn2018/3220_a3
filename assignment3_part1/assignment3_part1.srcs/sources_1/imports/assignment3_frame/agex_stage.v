@@ -146,10 +146,10 @@ module AGEX_STAGE(
     assign forward_check1MEM = (memwb_write & (memwb_dest == incoming_reg1) & (~(ex_dest == incoming_reg1) || (~ex_write)));
     assign forward_check2MEM = (memwb_write & (memwb_dest == incoming_reg2) & (~(ex_dest == incoming_reg2) || (~ex_write)));
 
-    assign alu_forward = from_MEM_to_AGEX[5:from_MEM_to_AGEX_WIDTH-1];
+    //assign alu_forward = from_MEM_to_AGEX[5:from_MEM_to_AGEX_WIDTH-1];
 
-    assign regval1_AGEX = forward_check1 ? alu_forward : (forward_check1MEM ? alu_forward : raw1);
-    assign regval2_AGEX = forward_check2 ? alu_forward : (forward_check2MEM ? alu_forward : raw2);
+    assign regval1_AGEX = forward_check1EX ? alu_forward : (forward_check1MEM ? alu_forward : raw1);
+    assign regval2_AGEX = forward_check2EX ? alu_forward : (forward_check2MEM ? alu_forward : raw2);
 
     assign  {
                                   inst_AGEX,
