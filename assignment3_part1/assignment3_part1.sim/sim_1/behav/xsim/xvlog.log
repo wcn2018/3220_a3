@@ -4,6 +4,7 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/wchen487/Documents/3220_a3/as
 INFO: [VRFC 10-311] analyzing module clk_wiz_0
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/wchen487/Documents/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/agex_stage.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module AGEX_STAGE
+INFO: [VRFC 10-2458] undeclared symbol forward_checkDESTMEM, assumed default net type wire [/home/wchen487/Documents/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/agex_stage.v:157]
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/wchen487/Documents/3220_a3/assignment3_part1/assignment3_part1.srcs/sources_1/imports/assignment3_frame/de_stage.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module DE_STAGE
 INFO: [VRFC 10-311] analyzing module SXT

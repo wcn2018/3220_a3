@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1575000fs"></ZoomStartTime>
-      <ZoomEndTime time="1691401fs"></ZoomEndTime>
+      <ZoomStartTime time="1001200fs"></ZoomStartTime>
+      <ZoomEndTime time="1127401fs"></ZoomEndTime>
       <Cursor1Time time="10000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="167"></NameColumnWidth>
-      <ValueColumnWidth column_width="83"></ValueColumnWidth>
+      <ValueColumnWidth column_width="75"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="60" />
+   <WVObjectSize size="64" />
    <wvobject type="logic" fp_name="/tb_project3/CLOCK_50">
       <obj_property name="ElementShortName">CLOCK_50</obj_property>
       <obj_property name="ObjectShortName">CLOCK_50</obj_property>
@@ -83,6 +83,22 @@
    <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/br_cond_AGEX">
       <obj_property name="ElementShortName">br_cond_AGEX</obj_property>
       <obj_property name="ObjectShortName">br_cond_AGEX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/in_destex">
+      <obj_property name="ElementShortName">in_destex[3:0]</obj_property>
+      <obj_property name="ObjectShortName">in_destex[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/ex_dest">
+      <obj_property name="ElementShortName">ex_dest[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ex_dest[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/forward_checkDESTEX">
+      <obj_property name="ElementShortName">forward_checkDESTEX</obj_property>
+      <obj_property name="ObjectShortName">forward_checkDESTEX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/forward_checkDESTMEM">
+      <obj_property name="ElementShortName">forward_checkDESTMEM</obj_property>
+      <obj_property name="ObjectShortName">forward_checkDESTMEM</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/forward_check1EX">
       <obj_property name="ElementShortName">forward_check1EX</obj_property>
