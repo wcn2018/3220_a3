@@ -9,7 +9,8 @@ module AGEX_STAGE(
   input [`DE_latch_WIDTH-1:0] from_DE_latch,
   output[`AGEX_latch_WIDTH-1:0] AGEX_latch_out,
   output[`from_AGEX_to_FE_WIDTH-1:0] from_AGEX_to_FE,
-  output[`from_AGEX_to_DE_WIDTH-1:0] from_AGEX_to_DE
+  output[`from_AGEX_to_DE_WIDTH-1:0] from_AGEX_to_DE,
+  //output[`from_AGEX_to_WB_WIDTH-1:0] from_AGEX_to_WB
 );
 
   reg [`AGEX_latch_WIDTH-1:0] AGEX_latch; 
@@ -142,11 +143,16 @@ module AGEX_STAGE(
       wb_forward
     } = from_WB_to_AGEX;
 
+    wire[REGNOBITS-1:O] in_destex;
+    wire forward_checkDESTEX;
     assign forward_check1EX = ((incoming_reg1 == ex_dest) & ex_write);
     assign forward_check2EX = ((incoming_reg2 == ex_dest) & ex_write);
+    assign forward_checkDESTEX = ((in_destex == ex_dest) & ex_write);
 
     assign forward_check1MEM = (memwb_write & (memwb_dest == incoming_reg1) & (~(ex_dest == incoming_reg1) || (ex_write == 0)));
     assign forward_check2MEM = (memwb_write & (memwb_dest == incoming_reg2) & (~(ex_dest == incoming_reg2) || (ex_write == 0)));
+    assign forward_checkDESTMEM = (memwb_write & (memwb_dest == in_destex) & (~(ex_dest == in_destex) || (ex_write == 0)));
+
 
     //assign alu_forward = from_MEM_to_AGEX[5:from_MEM_to_AGEX_WIDTH-1];
     
@@ -154,6 +160,7 @@ module AGEX_STAGE(
     //assign regval2_AGEX = forward_check2EX ? alu_forward : raw2;
     assign regval1_AGEX = forward_check1EX ? alu_forward : (forward_check1MEM ? wb_forward : raw1);
     assign regval2_AGEX = forward_check2EX ? alu_forward : (forward_check2MEM ? wb_forward : raw2);
+    assign wregno_AGEX = forward_checkDESTEX ? alu_forward : (forward_checkDESTMEM ? wb_forward : in_destex);
 
     assign  {
                                   inst_AGEX,
@@ -171,7 +178,7 @@ module AGEX_STAGE(
                                   rd_mem_AGEX,
                                   wr_mem_AGEX,
                                   wr_reg_AGEX,
-                                  wregno_AGEX,
+                                  in_destex,
                                   incoming_reg1,
                                   incoming_reg2,
                                           // more signals might need
@@ -207,6 +214,7 @@ module AGEX_STAGE(
                                 pctarget_AGEX, // DBITS
                                 pctarget_AGEX_JMP //DBITS
                                  };
+
  
   always @ (posedge clk or posedge reset) begin
     if(reset) begin
