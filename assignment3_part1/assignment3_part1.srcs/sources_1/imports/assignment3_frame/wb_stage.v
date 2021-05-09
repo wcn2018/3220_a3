@@ -78,7 +78,8 @@ module WB_STAGE(
 
    assign from_WB_to_AGEX = {
                                 wregno_WB,
-                                wr_reg_WB
+                                wr_reg_WB,
+                                aluout_WB
    };
         
   // **TODO: Write the code for LEDR here

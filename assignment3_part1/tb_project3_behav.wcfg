@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="10368600fs"></ZoomStartTime>
-      <ZoomEndTime time="10628001fs"></ZoomEndTime>
-      <Cursor1Time time="10499400fs"></Cursor1Time>
+      <ZoomStartTime time="1575000fs"></ZoomStartTime>
+      <ZoomEndTime time="1691401fs"></ZoomEndTime>
+      <Cursor1Time time="10000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="206"></NameColumnWidth>
-      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+      <NameColumnWidth column_width="167"></NameColumnWidth>
+      <ValueColumnWidth column_width="83"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="54" />
+   <WVObjectSize size="60" />
    <wvobject type="logic" fp_name="/tb_project3/CLOCK_50">
       <obj_property name="ElementShortName">CLOCK_50</obj_property>
       <obj_property name="ObjectShortName">CLOCK_50</obj_property>
@@ -68,6 +68,46 @@
       <obj_property name="ElementShortName">PC_WB[31:0]</obj_property>
       <obj_property name="ObjectShortName">PC_WB[31:0]</obj_property>
    </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/aluout_AGEX">
+      <obj_property name="ElementShortName">aluout_AGEX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aluout_AGEX[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/regval1_AGEX">
+      <obj_property name="ElementShortName">regval1_AGEX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">regval1_AGEX[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/regval2_AGEX">
+      <obj_property name="ElementShortName">regval2_AGEX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">regval2_AGEX[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/br_cond_AGEX">
+      <obj_property name="ElementShortName">br_cond_AGEX</obj_property>
+      <obj_property name="ObjectShortName">br_cond_AGEX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/forward_check1EX">
+      <obj_property name="ElementShortName">forward_check1EX</obj_property>
+      <obj_property name="ObjectShortName">forward_check1EX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/forward_check2EX">
+      <obj_property name="ElementShortName">forward_check2EX</obj_property>
+      <obj_property name="ObjectShortName">forward_check2EX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/forward_check1MEM">
+      <obj_property name="ElementShortName">forward_check1MEM</obj_property>
+      <obj_property name="ObjectShortName">forward_check1MEM</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/forward_check2MEM">
+      <obj_property name="ElementShortName">forward_check2MEM</obj_property>
+      <obj_property name="ObjectShortName">forward_check2MEM</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/alu_forward">
+      <obj_property name="ElementShortName">alu_forward[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_forward[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/from_AGEX_br_cond">
+      <obj_property name="ElementShortName">from_AGEX_br_cond</obj_property>
+      <obj_property name="ObjectShortName">from_AGEX_br_cond</obj_property>
+   </wvobject>
    <wvobject type="logic" fp_name="/tb_project3/myprj/my_clock/clk_in1">
       <obj_property name="ElementShortName">clk_in1</obj_property>
       <obj_property name="ObjectShortName">clk_in1</obj_property>
@@ -92,10 +132,6 @@
       <obj_property name="ElementShortName">stall_pipe</obj_property>
       <obj_property name="ObjectShortName">stall_pipe</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/busy_stall">
-      <obj_property name="ElementShortName">busy_stall</obj_property>
-      <obj_property name="ObjectShortName">busy_stall</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb_project3/myprj/my_DE_stage/should_bubble">
       <obj_property name="ElementShortName">should_bubble</obj_property>
       <obj_property name="ObjectShortName">should_bubble</obj_property>
@@ -107,10 +143,6 @@
    <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/from_AGEX_is_jmp">
       <obj_property name="ElementShortName">from_AGEX_is_jmp</obj_property>
       <obj_property name="ObjectShortName">from_AGEX_is_jmp</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/from_AGEX_br_cond">
-      <obj_property name="ElementShortName">from_AGEX_br_cond</obj_property>
-      <obj_property name="ObjectShortName">from_AGEX_br_cond</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_project3/myprj/my_FE_stage/from_AGEX_br_target">
       <obj_property name="ElementShortName">from_AGEX_br_target[31:0]</obj_property>
@@ -127,7 +159,6 @@
    <wvobject type="array" fp_name="/tb_project3/myprj/my_DE_stage/regs">
       <obj_property name="ElementShortName">regs[15:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">regs[15:0][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_project3/myprj/my_DE_stage/op1_DE">
       <obj_property name="ElementShortName">op1_DE[5:0]</obj_property>
@@ -177,14 +208,6 @@
       <obj_property name="ElementShortName">from_WB_aluval[31:0]</obj_property>
       <obj_property name="ObjectShortName">from_WB_aluval[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/regval1_AGEX">
-      <obj_property name="ElementShortName">regval1_AGEX[31:0]</obj_property>
-      <obj_property name="ObjectShortName">regval1_AGEX[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/regval2_AGEX">
-      <obj_property name="ElementShortName">regval2_AGEX[31:0]</obj_property>
-      <obj_property name="ObjectShortName">regval2_AGEX[31:0]</obj_property>
-   </wvobject>
    <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/is_br_AGEX">
       <obj_property name="ElementShortName">is_br_AGEX</obj_property>
       <obj_property name="ObjectShortName">is_br_AGEX</obj_property>
@@ -204,10 +227,6 @@
    <wvobject type="logic" fp_name="/tb_project3/myprj/my_AGEX_stage/wr_reg_AGEX">
       <obj_property name="ElementShortName">wr_reg_AGEX</obj_property>
       <obj_property name="ObjectShortName">wr_reg_AGEX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_project3/myprj/my_AGEX_stage/aluout_AGEX">
-      <obj_property name="ElementShortName">aluout_AGEX[31:0]</obj_property>
-      <obj_property name="ObjectShortName">aluout_AGEX[31:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_project3/myprj/my_MEM_stage/memaddr_MEM">
       <obj_property name="ElementShortName">memaddr_MEM[31:0]</obj_property>
@@ -236,5 +255,9 @@
    <wvobject type="array" fp_name="/tb_project3/myprj/my_WB_stage/regval2_WB">
       <obj_property name="ElementShortName">regval2_WB[31:0]</obj_property>
       <obj_property name="ObjectShortName">regval2_WB[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_project3/myprj/my_FE_stage/busy_stall">
+      <obj_property name="ElementShortName">busy_stall</obj_property>
+      <obj_property name="ObjectShortName">busy_stall</obj_property>
    </wvobject>
 </wave_config>
